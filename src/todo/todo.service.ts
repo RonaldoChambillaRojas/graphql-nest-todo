@@ -72,6 +72,20 @@ export class TodoService {
         return todoToUpdate;
 
     }
+
+    deleteTodo( id ): boolean{
+        const todoDelete = this.findOne(id)
+
+        this.todos = this.todos.filter( todo => {
+            if( todo !== todoDelete){
+                return todo;
+            }
+        })
+
+        return true;
+
+
+    }
     
 
 }
