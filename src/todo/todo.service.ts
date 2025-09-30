@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Todo } from './entity/todo.entity';
-import { CreateTodoInput } from './dto/inputs/create-todo.input';
-import { UpdateTodoInput } from './dto/inputs/update-todo.input';
+import { CreateTodoInput, StatusTodoArgs, UpdateTodoInput } from './dto';
 
 @Injectable()
 export class TodoService {
@@ -15,7 +14,7 @@ export class TodoService {
         {
         id: 2,
         description: 'Piedra del Espacio',
-        done: false
+        done: true
         },
         {
         id: 3,
@@ -24,7 +23,13 @@ export class TodoService {
         },
     ];
 
-    findAll(): Todo[]{
+    findAll( {status}: StatusTodoArgs): Todo[]{
+
+        if(status !== undefined){
+            const todoFilters = this.todos.filter( todo => todo.done === status)
+            return todoFilters;
+        }
+
         return this.todos;
     };
 
@@ -86,6 +91,10 @@ export class TodoService {
 
 
     }
+
+    // statusTodo( statusArgs: StatusArgs ): Todo[]{
+
+    // }
     
 
 }
