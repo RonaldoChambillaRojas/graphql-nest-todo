@@ -65,4 +65,33 @@ export class TodoResolver {
 
     }
 
+    // Agregations
+
+    @Query( () => Int,{
+        name: 'totalTodos'
+    })
+    totalTodos(){
+
+        return this.todoService.totalTodos;
+
+    }
+    @Query( () => Int,{
+        name: 'completeTodos'
+    })
+    completeTodos(){
+
+        return this.todoService.completeTodos;
+
+    }
+    @Query( () => Int,{
+        name: 'pendingTodos'
+    })
+    pendingTodos(){
+
+        return this.todoService.pendigTodos;
+
+    }
+
+
+
 }

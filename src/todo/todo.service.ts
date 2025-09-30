@@ -23,6 +23,24 @@ export class TodoService {
         },
     ];
 
+    get totalTodos() {
+        return this.todos.length;
+    }
+
+    get completeTodos(){
+        const todosComplete = this.todos.filter( todo => todo.done === true)
+
+        return todosComplete.length;
+    }
+
+    get pendigTodos(){
+
+        const todosPending = this.todos.filter( todo => todo.done === false)
+
+        return todosPending.length;
+
+    }
+
     findAll( {status}: StatusTodoArgs): Todo[]{
 
         if(status !== undefined){
